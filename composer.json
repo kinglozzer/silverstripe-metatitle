@@ -1,0 +1,20 @@
+{
+	"name": "kinglozzer/metatitle",
+	"description": "Re-adds the 'MetaTitle' field for SilverStripe 3.1",
+	"type": "silverstripe-module",
+	"homepage": "https://github.com/kinglozzer/silverstripe-metatitle",
+	"keywords": ["silverstripe", "meta", "title", "metatitle"],
+	"authors": [
+		{
+			"name": "Loz Calver",
+			"email": "lozcalver@bigfork.co.uk"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/kinglozzer/silverstripe-metatitle/issues"
+	},
+	"require": {
+		"silverstripe/framework": ">=3.1",
+		"silverstripe/silverstripe-cms": ">=3.1"
+	}
+}
