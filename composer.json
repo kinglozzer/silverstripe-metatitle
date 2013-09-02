@@ -10,6 +10,7 @@
 			"email": "lozcalver@bigfork.co.uk"
 		}
 	],
+	"license": "BSD-3-Clause",
 	"support": {
 		"issues": "https://github.com/kinglozzer/silverstripe-metatitle/issues"
 	},
