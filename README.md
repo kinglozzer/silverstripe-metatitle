@@ -14,7 +14,7 @@ Translations were pulled from SilverStripe CMS v3.0.2 (before 'SiteTree.METATITL
 ###Composer:###
 
 ```
-require: "kinglozzer/silverstripe-metatitle": "dev-master"
+require: "kinglozzer/metatitle": "dev-master"
 ```
 
 ###Download:###
