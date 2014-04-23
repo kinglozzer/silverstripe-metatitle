@@ -1,4 +1,5 @@
 #MetaTitle#
+[![Build Status](https://travis-ci.org/kinglozzer/silverstripe-metatitle.png?branch=master)](https://travis-ci.org/kinglozzer/silverstripe-metatitle) [![Latest Stable Version](https://poser.pugx.org/kinglozzer/metatitle/v/stable.png)](https://packagist.org/packages/kinglozzer/metatitle) [![Total Downloads](https://poser.pugx.org/kinglozzer/metatitle/downloads.png)](https://packagist.org/packages/kinglozzer/metatitle) [![License](https://poser.pugx.org/kinglozzer/metatitle/license.png)](https://packagist.org/packages/kinglozzer/metatitle)
 
 Re-adds the 'MetaTitle' field that was removed in SilverStripe 3.1.
 
