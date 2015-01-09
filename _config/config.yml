@@ -3,5 +3,4 @@ SiteTree:
     - MetaTitleExtension
 
 MetaTitleExtension:
-  Tab: Root.Main.Metadata
   InsertBefore: MetaDescription

@@ -7,8 +7,6 @@ class MetaTitleExtension extends DataExtension {
 	);
 
 	public function updateCMSFields(FieldList $fields) {
-		$metaData = $fields->fieldByName(Config::inst()->get('MetaTitleExtension', 'Tab'));
-
 		$metaFieldTitle = new TextField("MetaTitle", $this->owner->fieldLabel('MetaTitle'));
 		$metaFieldTitle->setRightTitle(
 				_t(
@@ -17,7 +15,7 @@ class MetaTitleExtension extends DataExtension {
 				)
 			)->addExtraClass('help');
 
-		$metaData->insertBefore($metaFieldTitle, Config::inst()->get('MetaTitleExtension', 'InsertBefore'));
+		$fields->insertBefore($metaFieldTitle, Config::inst()->get('MetaTitleExtension', 'InsertBefore'));
 
 		return $fields;
 	}
