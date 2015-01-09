@@ -7,7 +7,7 @@ class MetaTitleExtension extends DataExtension {
 	);
 
 	public function updateCMSFields(FieldList $fields) {
-		$metaData = $fields->fieldByName('Root.Main.Metadata');
+		$metaData = $fields->fieldByName(Config::inst()->get('MetaTitleExtension', 'Tab'));
 
 		$metaFieldTitle = new TextField("MetaTitle", $this->owner->fieldLabel('MetaTitle'));
 		$metaFieldTitle->setRightTitle(
@@ -16,8 +16,8 @@ class MetaTitleExtension extends DataExtension {
 					'Shown at the top of the browser window and used as the "linked text" by search engines.'
 				)
 			)->addExtraClass('help');
-		
-		$metaData->insertBefore($metaFieldTitle, 'MetaDescription');
+
+		$metaData->insertBefore($metaFieldTitle, Config::inst()->get('MetaTitleExtension', 'InsertBefore'));
 
 		return $fields;
 	}
