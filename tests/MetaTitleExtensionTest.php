@@ -73,9 +73,31 @@ class MetaTitleExtensionTest extends SapphireTest {
 		$this->assertEquals('Custom DO meta title', $objTest->MetaTitle);
 	}
 
+	public function testFieldPosition() {
+		Config::nest();
+		Config::inst()->update('MetaTitleExtension', 'InsertBefore', 'MetaDescription');
+
+		$testObject = new MetaTitleExtensionTest_DataObject();
+		$fields = $testObject->getCMSFields();
+		$descriptionPosition = $fields->fieldPosition('MetaDescription');
+		$this->assertEquals($descriptionPosition - 1, $fields->fieldPosition('MetaTitle'));
+
+		Config::inst()->update('MetaTitleExtension', 'InsertBefore', 'URLSegment');
+		$fields = $testObject->getCMSFields();
+		$urlSegmentPosition = $fields->fieldPosition('URLSegment');
+		$this->assertEquals($urlSegmentPosition - 1, $fields->fieldPosition('MetaTitle'));
+
+		Config::unnest();
+	}
+
 }
 
 class MetaTitleExtensionTest_DataObject extends DataObject implements TestOnly {
+
+	private static $db = array(
+		'MetaDescription' => 'Text',
+		'URLSegment' => 'Varchar(100)'
+	);
 
 	private static $extensions = array(
 		'MetaTitleExtension'
