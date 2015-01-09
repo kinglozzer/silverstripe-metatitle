@@ -1,3 +1,5 @@
 SiteTree:
   extensions:
     - MetaTitleExtension
+MetaTitleExtension:
+  InsertBefore: 'MetaDescription'
