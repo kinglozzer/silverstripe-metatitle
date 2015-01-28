@@ -6,7 +6,7 @@ php:
 env:
   matrix:
     - DB=MYSQL CORE_RELEASE=3.1
-    - DB=MYSQL CORE_RELEASE=master
+    - DB=MYSQL CORE_RELEASE=3
 
 before_script:
   - phpenv rehash
