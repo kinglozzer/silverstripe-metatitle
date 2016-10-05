@@ -4,6 +4,7 @@ namespace Kinglozzer\SilverStripeMetaTitle\Tests;
 
 use Kinglozzer\SilverStripeMetaTitle\MetaTitleExtension;
 use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\Core\Config\Config;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\Dev\TestOnly;
 use SilverStripe\i18n\i18n;
@@ -88,6 +89,26 @@ class MetaTitleExtensionTest extends SapphireTest
 
         $objTest = MetaTitleExtensionTest_DataObject::get()->byID($obj->ID);
         $this->assertEquals('Custom DO meta title', $objTest->MetaTitle);
+    }
+
+    public function testMetaTags()
+    {
+        $format = '$MetaTitle - Site Name';
+        Config::inst()->update(MetaTitleExtension::class, 'title_format', $format);
+
+        $siteTree = new SiteTree();
+        $siteTree->Title = 'Page title';
+
+        $tags = $siteTree->MetaTags();
+        $result = preg_match("/<title>(.+)<\/title>/i", $tags, $matches);
+        $this->assertEquals(1, $result, 'Meta title tag not found');
+        $this->assertEquals('Page title - Site Name', $matches[1], 'Meta title incorrect');
+
+        $siteTree->MetaTitle = 'Page meta title';
+        $tags = $siteTree->MetaTags();
+        $result = preg_match("/<title>(.+)<\/title>/i", $tags, $matches);
+        $this->assertEquals(1, $result, 'Meta title tag not found');
+        $this->assertEquals('Page meta title - Site Name', $matches[1], 'Meta title incorrect');
     }
 }
 
