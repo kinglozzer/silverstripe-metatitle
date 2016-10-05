@@ -1,5 +1,3 @@
-SiteTree:
+SilverStripe\CMS\Model\SiteTree:
   extensions:
-    - MetaTitleExtension
-MetaTitleExtension:
-  InsertBefore: 'MetaDescription'
+    - Kinglozzer\SilverStripeMetaTitle\MetaTitleExtension

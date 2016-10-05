@@ -1,11 +1,22 @@
 <?php
 
+namespace Kinglozzer\SilverStripeMetaTitle\Tests;
+
+use Kinglozzer\SilverStripeMetaTitle\MetaTitleExtension;
+use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\Dev\SapphireTest;
+use SilverStripe\Dev\TestOnly;
+use SilverStripe\i18n\i18n;
+use SilverStripe\ORM\DataObject;
+
 class MetaTitleExtensionTest extends SapphireTest
 {
-    
-    protected $extraDataObjects = array(
-        'MetaTitleExtensionTest_DataObject'
-    );
+    /**
+     * @var array
+     */
+    protected $extraDataObjects = [
+        MetaTitleExtensionTest_DataObject::class
+    ];
 
     public function setUp()
     {
@@ -13,12 +24,12 @@ class MetaTitleExtensionTest extends SapphireTest
 
         $this->originalLocale = i18n::get_locale();
     }
-    
+
     public function tearDown()
     {
         i18n::set_locale($this->originalLocale);
         DataObject::reset();
-        
+
         parent::tearDown();
     }
 
@@ -78,35 +89,18 @@ class MetaTitleExtensionTest extends SapphireTest
         $objTest = MetaTitleExtensionTest_DataObject::get()->byID($obj->ID);
         $this->assertEquals('Custom DO meta title', $objTest->MetaTitle);
     }
-
-    public function testFieldPosition()
-    {
-        Config::nest();
-        Config::inst()->update('MetaTitleExtension', 'InsertBefore', 'MetaDescription');
-
-        $testObject = new MetaTitleExtensionTest_DataObject();
-        $fields = $testObject->getCMSFields();
-        $descriptionPosition = $fields->fieldPosition('MetaDescription');
-        $this->assertEquals($descriptionPosition - 1, $fields->fieldPosition('MetaTitle'));
-
-        Config::inst()->update('MetaTitleExtension', 'InsertBefore', 'URLSegment');
-        $fields = $testObject->getCMSFields();
-        $urlSegmentPosition = $fields->fieldPosition('URLSegment');
-        $this->assertEquals($urlSegmentPosition - 1, $fields->fieldPosition('MetaTitle'));
-
-        Config::unnest();
-    }
 }
 
 class MetaTitleExtensionTest_DataObject extends DataObject implements TestOnly
 {
-
-    private static $db = array(
+    private static $db = [
         'MetaDescription' => 'Text',
         'URLSegment' => 'Varchar(100)'
-    );
+    ];
 
-    private static $extensions = array(
-        'MetaTitleExtension'
-    );
+    private static $extensions = [
+        MetaTitleExtension::class
+    ];
+
+    private static $table_name = 'MetaTitleExtensionTest_DataObject';
 }
