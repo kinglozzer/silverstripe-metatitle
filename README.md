@@ -45,7 +45,7 @@ Content authors can edit the meta title via the new “Title” field that’s a
 
 ##### Automatically including the meta title
 
-The simplest way to ensure that the meta title is included is to call `$MetaTags` in the `<head>` if your template. This will include the meta title (falling back to page title if meta title is not set) and the site name in the format: `Meta title » Your Site Name`.
+The simplest way to ensure that the meta title is included is to call `$MetaTags` in the `<head>` of your template. This will include the meta title (falling back to page title if meta title is not set) and the site name in the format: `Meta title » Your Site Name`.
 
 The format can be customised by changing the `Kinglozzer\SilverStripeMetaTitle\MetaTitleExtension.title_format` config setting. For example, to change the » to a hyphen:
 
