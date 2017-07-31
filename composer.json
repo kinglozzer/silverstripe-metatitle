@@ -1,34 +1,36 @@
 {
-  "name": "kinglozzer/metatitle",
-  "description": "Re-adds the 'MetaTitle' field for SilverStripe 4",
-  "type": "silverstripe-module",
-  "homepage": "https://github.com/kinglozzer/silverstripe-metatitle",
-  "keywords": ["silverstripe", "meta", "title", "metatitle"],
-  "authors": [
-    {
-      "name": "Loz Calver",
-      "email": "lozcalver@bigfork.co.uk"
-    }
-  ],
-  "license": "BSD-3-Clause",
-  "support": {
-    "issues": "https://github.com/kinglozzer/silverstripe-metatitle/issues"
-  },
-  "require": {
-    "silverstripe/cms": "^4",
-    "silverstripe/framework": "^4"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^4.8"
-  },
-  "autoload": {
-    "psr-4": {
-      "Kinglozzer\\SilverStripeMetaTitle\\": "code/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Kinglozzer\\SilverStripeMetaTitle\\Tests\\": "tests/"
-    }
-  }
+    "name": "kinglozzer/metatitle",
+    "description": "Re-adds the 'MetaTitle' field for SilverStripe 4",
+    "type": "silverstripe-module",
+    "homepage": "https://github.com/kinglozzer/silverstripe-metatitle",
+    "keywords": ["silverstripe", "meta", "title", "metatitle"],
+    "authors": [
+        {
+            "name": "Loz Calver",
+            "email": "lozcalver@bigfork.co.uk"
+        }
+    ],
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/kinglozzer/silverstripe-metatitle/issues"
+    },
+    "require": {
+        "silverstripe/cms": "^4",
+        "silverstripe/framework": "^4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kinglozzer\\SilverStripeMetaTitle\\": "code/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Kinglozzer\\SilverStripeMetaTitle\\Tests\\": "tests/"
+        }
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev"
 }
