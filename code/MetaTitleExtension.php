@@ -4,10 +4,10 @@ namespace Kinglozzer\SilverStripeMetaTitle;
 
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\FieldList;
-use SilverStripe\Forms\FormField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\View\ArrayData;
+use SilverStripe\View\HTML;
 use SilverStripe\View\SSViewer;
 
 class MetaTitleExtension extends DataExtension
@@ -66,7 +66,7 @@ class MetaTitleExtension extends DataExtension
                 'MetaTitle' => $this->owner->MetaTitle ? $this->owner->obj('MetaTitle') : $this->owner->obj('Title')
             ]);
 
-            $newTitleTag = FormField::create_tag('title', [], SSViewer::execute_string($format, $data));
+            $newTitleTag = HTML::createTag('title', [], SSViewer::execute_string($format, $data));
             $tags = preg_replace("/<title>(.+)<\/title>/i", $newTitleTag, $tags);
         }
     }
