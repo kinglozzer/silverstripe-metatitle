@@ -1,3 +1,3 @@
 ar:
-  SiteTree:
+  SilverStripe\CMS\Model\SiteTree:
     METATITLE: العنوان

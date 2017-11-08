@@ -1,3 +1,3 @@
 fo:
-  SiteTree:
+  SilverStripe\CMS\Model\SiteTree:
     METATITLE: Heiti

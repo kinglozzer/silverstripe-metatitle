@@ -1,4 +1,4 @@
 nl:
-  SiteTree:
+  SilverStripe\CMS\Model\SiteTree:
     METATITLE: Titel
     METATITLEHELP: 'Zichtbaar aan de bovenkant van de browser en word gebruikt als klikbare tekst in zoekmachines.'

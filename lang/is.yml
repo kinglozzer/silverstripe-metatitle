@@ -1,3 +1,3 @@
 is:
-  SiteTree:
+  SilverStripe\CMS\Model\SiteTree:
     METATITLE: Titill

@@ -1,3 +1,3 @@
 ca:
-  SiteTree:
+  SilverStripe\CMS\Model\SiteTree:
     METATITLE: Títol
