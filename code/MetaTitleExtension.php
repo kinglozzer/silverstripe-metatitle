@@ -2,6 +2,7 @@
 
 namespace Kinglozzer\SilverStripeMetaTitle;
 
+use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextField;
@@ -33,7 +34,7 @@ class MetaTitleExtension extends DataExtension
     {
         $metaFieldTitle = TextField::create('MetaTitle', $this->owner->fieldLabel('MetaTitle'))
             ->setRightTitle(_t(
-                'SiteTree.METATITLEHELP',
+                SiteTree::class.'.METATITLEHELP',
                 'Shown at the top of the browser window and used as the "linked text" by search engines.'
             ))
             ->addExtraClass('help');
@@ -46,7 +47,7 @@ class MetaTitleExtension extends DataExtension
      */
     public function updateFieldLabels(&$labels)
     {
-        $labels['MetaTitle'] = _t('SiteTree.METATITLE', 'Title');
+        $labels['MetaTitle'] = _t(SiteTree::class.'.METATITLE', 'Title');
     }
 
     /**

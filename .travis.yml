@@ -23,4 +23,4 @@ before_script:
   - composer install --prefer-dist
 
 script:
-  - vendor/bin/phpunit tests flush=1
+  - vendor/bin/phpunit tests/
