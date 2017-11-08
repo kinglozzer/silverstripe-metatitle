@@ -1,7 +1,7 @@
 {
     "name": "kinglozzer/metatitle",
     "description": "Re-adds the 'MetaTitle' field for SilverStripe 4",
-    "type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
     "homepage": "https://github.com/kinglozzer/silverstripe-metatitle",
     "keywords": ["silverstripe", "meta", "title", "metatitle"],
     "authors": [

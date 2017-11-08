@@ -5,13 +5,18 @@ namespace Kinglozzer\SilverStripeMetaTitle\Tests;
 use Kinglozzer\SilverStripeMetaTitle\MetaTitleExtension;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Core\Config\Config;
+use SilverStripe\Core\Injector\Injector;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\Dev\TestOnly;
-use SilverStripe\i18n\i18n;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\i18n\Messages\MessageProvider;
+use SilverStripe\i18n\Tests\i18nTestManifest;
+use SilverStripe\i18n\i18n;
 
 class MetaTitleExtensionTest extends SapphireTest
 {
+    use i18nTestManifest;
+
     /**
      * @var array
      */
@@ -19,27 +24,27 @@ class MetaTitleExtensionTest extends SapphireTest
         MetaTitleExtensionTest_DataObject::class
     ];
 
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
-
-        $this->originalLocale = i18n::get_locale();
+        $this->setupManifest();
     }
 
-    public function tearDown()
+    protected function tearDown()
     {
-        i18n::set_locale($this->originalLocale);
-        DataObject::reset();
-
+        $this->tearDownManifest();
         parent::tearDown();
     }
 
     public function testUpdateCMSFields()
     {
         // Add custom translation for testing
-        i18n::get_translator('core')->getAdapter()->addTranslation(array(
-            'SiteTree.METATITLEHELP' => 'TRANS-EN Meta Title Help'
-        ), 'en');
+        $provider = Injector::inst()->get(MessageProvider::class);
+        $provider->getTranslator()->addResource(
+            'array',
+            [ SiteTree::class.'.METATITLEHELP' => 'TRANS-EN Meta Title Help' ],
+            'en'
+        );
 
         $siteTree = new SiteTree();
         $fields = $siteTree->getCMSFields();
@@ -51,27 +56,27 @@ class MetaTitleExtensionTest extends SapphireTest
     public function testUpdateFieldLabels()
     {
         // Add custom translation for testing
-        i18n::get_translator('core')->getAdapter()->addTranslation(array(
-            'SiteTree.METATITLE' => 'TRANS-EN Meta Title'
-        ), 'en');
+        $provider = Injector::inst()->get(MessageProvider::class);
+        $provider->getTranslator()->addResource(
+            'array',
+            [ SiteTree::class.'.METATITLE' => 'TRANS-EN Meta Title' ],
+            'en'
+        );
 
         $siteTree = new SiteTree();
-        $labels = $siteTree->fieldLabels();
-
-        $this->assertArrayHasKey('MetaTitle', $labels);
-        $this->assertEquals('TRANS-EN Meta Title', $labels['MetaTitle']);
+        $this->assertEquals('TRANS-EN Meta Title', $siteTree->fieldLabel('MetaTitle'));
 
         // Set different locale, clear field label cache
         i18n::set_locale('de_DE');
-        DataObject::reset();
 
         // Add custom translation for testing
-        i18n::get_translator('core')->getAdapter()->addTranslation(array(
-            'SiteTree.METATITLE' => 'TRANS-DE Meta Title'
-        ), 'de_DE');
-
-        $labels = $siteTree->fieldLabels();
-        $this->assertEquals('TRANS-DE Meta Title', $labels['MetaTitle']);
+        $provider = Injector::inst()->get(MessageProvider::class);
+        $provider->getTranslator()->addResource(
+            'array',
+            [ SiteTree::class.'.METATITLE' => 'TRANS-DE Meta Title' ],
+            'de_DE'
+        );
+        $this->assertEquals('TRANS-DE Meta Title', $siteTree->fieldLabel('MetaTitle'));
     }
 
     public function testDataIntegrity()
