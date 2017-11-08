@@ -12,7 +12,6 @@ env:
     - DB=MYSQL
 
 before_script:
-
 # Init PHP
   - phpenv rehash
   - phpenv config-rm xdebug.ini
@@ -20,12 +19,8 @@ before_script:
 
 # Install composer dependencies
   - composer validate
+  - composer require silverstripe/installer:^4.0 --no-update
   - composer install --prefer-dist
-  - composer require symfony/config:^3.2 silverstripe/framework:4.0.x-dev silverstripe/config:1.0.x-dev silverstripe/admin:1.0.x-dev silverstripe/assets:1.0.x-dev silverstripe/versioned:1.0.x-dev silverstripe/cms:4.0.x-dev silverstripe/campaign-admin:1.0.x-dev silverstripe/siteconfig:4.0.x-dev silverstripe/reports:4.0.x-dev silverstripe/graphql:dev-master --no-update --prefer-dist
-  - composer update
-
-# Bootstrap cms / mysite folder
-  - php ./cms/tests/bootstrap/mysite.php
 
 script:
   - vendor/bin/phpunit tests flush=1
