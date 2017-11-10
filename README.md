@@ -37,9 +37,9 @@ Simply download the [zip version](https://github.com/kinglozzer/silverstripe-met
 
 #### CMS
 
-Content authors can edit the meta title via the new “Title” field that’s added to the “Metadata” toggle fields:
+Content authors can edit the meta title via the new “Meta Title” field that’s added to the “Metadata” toggle fields:
 
-<img src="images/cms.png" width="723" height="151" />
+<img src="images/cms.png" width="917" height="196" />
 
 #### Templates
 
