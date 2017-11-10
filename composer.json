@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Kinglozzer\\SilverStripeMetaTitle\\": "code/"
+            "Kinglozzer\\SilverStripeMetaTitle\\": "src/"
         }
     },
     "autoload-dev": {
