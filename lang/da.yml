@@ -1,3 +1,4 @@
 da:
   SilverStripe\CMS\Model\SiteTree:
     METATITLE: Meta-Titel
+    METATITLEHELP: "Vises i toppen af browser vinduet, samt som overskrift i søgemaskineresultater"
