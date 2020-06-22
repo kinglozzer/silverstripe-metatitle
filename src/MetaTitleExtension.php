@@ -2,6 +2,8 @@
 
 namespace Kinglozzer\SilverStripeMetaTitle;
 
+use SilverStripe\CMS\Model\RedirectorPage;
+use SilverStripe\CMS\Model\VirtualPage;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextField;
@@ -31,6 +33,10 @@ class MetaTitleExtension extends DataExtension
      */
     public function updateCMSFields(FieldList $fields)
     {
+        if ($this->owner instanceof RedirectorPage || $this->owner instanceof VirtualPage) {
+            return;
+        }
+
         $metaFieldTitle = TextField::create('MetaTitle', $this->owner->fieldLabel('MetaTitle'))
             ->setRightTitle(_t(
                 'SilverStripe\\CMS\\Model\\SiteTree.METATITLEHELP',
