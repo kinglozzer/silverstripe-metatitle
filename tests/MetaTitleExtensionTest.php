@@ -8,26 +8,23 @@ use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Core\Injector\Injector;
 use SilverStripe\Dev\SapphireTest;
-use SilverStripe\Dev\TestOnly;
-use SilverStripe\ORM\DataObject;
+use SilverStripe\i18n\i18n;
 use SilverStripe\i18n\Messages\MessageProvider;
 use SilverStripe\i18n\Messages\Symfony\ModuleYamlLoader;
 use SilverStripe\i18n\Messages\Symfony\SymfonyMessageProvider;
 use SilverStripe\i18n\Messages\YamlReader;
-use SilverStripe\i18n\i18n;
+use SilverStripe\ORM\DataObject;
 use Symfony\Component\Translation\Loader\ArrayLoader;
 use Symfony\Component\Translation\Translator;
 
 class MetaTitleExtensionTest extends SapphireTest
 {
-    /**
-     * @var array
-     */
+
     public static $extra_dataobjects = [
         MetaTitleExtensionTest_DataObject::class
     ];
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -47,14 +44,14 @@ class MetaTitleExtensionTest extends SapphireTest
         Injector::inst()->registerService($provider, MessageProvider::class);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         i18n::set_locale($this->originalLocale);
 
         parent::tearDown();
     }
 
-    public function testUpdateCMSFields()
+    public function testUpdateCMSFields(): void
     {
         // Add custom translation for testing
         $provider = Injector::inst()->get(MessageProvider::class);
@@ -71,7 +68,7 @@ class MetaTitleExtensionTest extends SapphireTest
         $this->assertEquals('TRANS-EN Meta Title Help', $metaTitleField->RightTitle());
     }
 
-    public function testUpdateFieldLabels()
+    public function testUpdateFieldLabels(): void
     {
         // Add custom translation for testing
         $provider = Injector::inst()->get(MessageProvider::class);
@@ -98,7 +95,7 @@ class MetaTitleExtensionTest extends SapphireTest
         $this->assertEquals('TRANS-DE Meta Title', $page->fieldLabel('MetaTitle'));
     }
 
-    public function testDataIntegrity()
+    public function testDataIntegrity(): void
     {
         $page = new Page();
         $page->MetaTitle = 'Custom meta title';
@@ -115,10 +112,10 @@ class MetaTitleExtensionTest extends SapphireTest
         $this->assertEquals('Custom DO meta title', $objTest->MetaTitle);
     }
 
-    public function testMetaTags()
+    public function testMetaTags(): void
     {
         $format = '$MetaTitle - Site Name';
-        Config::inst()->update(MetaTitleExtension::class, 'title_format', $format);
+        Config::modify()->set(MetaTitleExtension::class, 'title_format', $format);
 
         $page = new Page();
         $page->Title = 'Page title';
@@ -134,18 +131,4 @@ class MetaTitleExtensionTest extends SapphireTest
         $this->assertEquals(1, $result, 'Meta title tag not found');
         $this->assertEquals('Page meta title - Site Name', $matches[1], 'Meta title incorrect');
     }
-}
-
-class MetaTitleExtensionTest_DataObject extends DataObject implements TestOnly
-{
-    private static $db = [
-        'MetaDescription' => 'Text',
-        'URLSegment' => 'Varchar(100)'
-    ];
-
-    private static $extensions = [
-        MetaTitleExtension::class
-    ];
-
-    private static $table_name = 'metatitleextensiontest_dataobject';
 }
