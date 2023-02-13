@@ -12,25 +12,17 @@ use SilverStripe\View\ArrayData;
 use SilverStripe\View\HTML;
 use SilverStripe\View\SSViewer;
 
+/**
+ * @property string $MetaTitle
+ */
 class MetaTitleExtension extends DataExtension
 {
-    /**
-     * @config
-     * @var array
-     */
-    private static $db = [
+    private static array $db = [
         'MetaTitle' => 'Varchar(255)'
     ];
 
-    /**
-     * @config
-     * @var string
-     */
-    private static $title_format = '$MetaTitle &raquo; $SiteConfig.Title';
+    private static string $title_format = '$MetaTitle &raquo; $SiteConfig.Title';
 
-    /**
-     * @param FieldList $fields
-     */
     public function updateCMSFields(FieldList $fields)
     {
         if ($this->owner instanceof RedirectorPage || $this->owner instanceof VirtualPage) {
@@ -44,7 +36,7 @@ class MetaTitleExtension extends DataExtension
             ))
             ->addExtraClass('help');
 
-        $fields->insertBefore($metaFieldTitle, 'MetaDescription');
+        $fields->insertBefore('MetaDescription', $metaFieldTitle);
     }
 
     /**

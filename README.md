@@ -12,10 +12,10 @@ Translations were pulled from SilverStripe CMS v3.0.2 (before the `SiteTree.META
 
 ## Requirements:
 
-This module requires SilverStripe Framework & CMS version 4 and up:
+This module requires SilverStripe Framework & CMS version 5 and up:
 
-- `"silverstripe/cms": "^4"`
-- `"silverstripe/framework": "^4"`
+- `"silverstripe/cms": "^5"`
+- `"silverstripe/framework": "^5"`
 
 For a SilverStripe 3 compatible version, please use the 1.x line of releases (with composer, require version `^1.0`).
 
@@ -26,7 +26,7 @@ Installation with Composer is preferred, but not required. Both methods of insta
 #### Composer
 
 ```bash
-$ composer require kinglozzer/metatitle:^2.0
+$ composer require kinglozzer/metatitle:^3.0
 ```
 
 #### ZIP Download
